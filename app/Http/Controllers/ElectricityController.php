@@ -79,6 +79,8 @@ class ElectricityController extends Controller
     {
         return view('admin.electricity.generate_bill');
     }
+
+
     // public function store_bill(Request $request)
     // {
     //     $int = intval($request->unit_consumption);
@@ -101,23 +103,14 @@ class ElectricityController extends Controller
 
 
 
-    //         } elseif ($int >= $bills[2]['start_unit']) {
+    //         } elseif ($int >= $bills[2]['start_unit'] && $int <= $bills[2]['end_unit']) {
 
-    //             $count = count($bills);
-    //             $rem = $int - $bills[0]['end_unit'];
+    //             $rem = $int - $bills[1]['end_unit'];
     //             $sum = $bills[0]['end_unit'] * $bills[0]['amount'];
-    //             $set = 1;
-    //             for ($i = $count; $i > 0; $i--) {
-    //                 $sum = $sum + ($bills[$set]['end_unit'] - $bills[($set - 1)]['end_unit']) * $bills[$set]['amount'];
-    //                 if ($bills[$set]['end_unit'] > $int) {
-    //                     break;
-    //                 }
-    //                 $set++;
-
-    //             }
-
-    //             $sum = $sum + $rem * $bills[$set]['amount'];
-    //             dd($sum);
+    //             $sum = $sum + ($bills[1]['end_unit'] - $bills[0]['end_unit']) * $bills[1]['amount'];
+    //             
+    //             $sum = $sum + $rem * $bills[2]['amount'];
+    //             dd($sum);           
 
 
     //         } elseif ($int >= $bills[3]['start_unit']) {
