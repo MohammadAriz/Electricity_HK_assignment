@@ -85,11 +85,11 @@ class ElectricityController extends Controller
     // {
     //     $int = intval($request->unit_consumption);
 
-    //     // $bills = BillConsumption::where('start_unit', '<=', $int)->where('end_unit', '>=', $int)->limit(1)->first();
+   
     //     $bills = BillConsumption::select('start_unit', 'end_unit', 'amount')->orderBy('amount')->get();
-    //     // dd($int);
+    //     
     //     if ($bills) {
-    //         if ($int < $bills[0]['end_unit']) {//variable 
+    //         if ($int < $bills[0]['end_unit']) {
     //             $amount = $int * $bills[0]['amount'];
     //             dd($amount);
     //         } elseif ($int >= $bills[1]['start_unit'] && $int <= $bills[1]['end_unit']) {
@@ -140,11 +140,11 @@ class ElectricityController extends Controller
             foreach ($bills as $bill) {
                 if ($bill->end_unit !== null && $remaining_units > $bill->end_unit) {
                     $consumed_units = $bill->end_unit - $previous_end_unit;
-                    $sum += $consumed_units * $bill->amount;
-                    $remaining_units -= $consumed_units;
+                    $sum = $sum + $consumed_units * $bill->amount;
+                    $remaining_units =  $remaining_units - $consumed_units;
                     $previous_end_unit = $bill->end_unit;
                 } else {
-                    $sum += $remaining_units * $bill->amount;
+                    $sum = $sum + $remaining_units * $bill->amount;
                     break;
                 }
             }
